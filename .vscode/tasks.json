@@ -1,0 +1,42 @@
+{
+    "tasks": [
+        {
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "type": "cppbuild",
+            "label": "cmake",
+            "command": "/usr/local/bin/cmake",
+            "args": [
+                "-DCMAKE_BUILD_TYPE=Debug",
+                ".."
+            ]
+        },
+        {
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "label": "make",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "make",
+            "args": [
+                "-j16"
+            ]
+        },
+        {
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "label": "build",
+            "dependsOrder": "sequence",
+            "dependsOn":[
+                "cmake",
+                "make"
+            ]
+        }
+    ],
+    "version": "2.0.0"
+}
