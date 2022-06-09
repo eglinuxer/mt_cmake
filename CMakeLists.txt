@@ -6,4 +6,6 @@ project(mt_cmake
     LANGUAGES CXX
 )
 
+list(APPEND CMAKE_MESSAGE_CONTEXT mt_cmake)
+
 add_subdirectory(src)

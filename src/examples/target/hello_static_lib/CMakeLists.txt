@@ -1,0 +1,41 @@
+cmake_minimum_required(VERSION 3.23 FATAL_ERROR)
+
+project(hello_static
+    VERSION 0.0.1
+    DESCRIPTION "A simple C++ project to demonstrate creating executables and libraries in CMake"
+    LANGUAGES CXX
+)
+
+# add the library target
+add_library(hello_static STATIC)
+
+# Set the output of the target to `hello` so it will be saved as hello.dll on windows and libhello.a on linux
+set_target_properties(hello_static
+    PROPERTIES OUTPUT_NAME hello
+)
+
+
+# set properties for the target. VERSION set the library version to the project
+# version * SOVERSION set the compatibility  version for the library to the
+# major number of the version
+set_target_properties(hello_static
+    PROPERTIES
+        VERSION ${PROJECT_VERSION}
+        SOVERSION ${PROJECT_VERSION_MAJOR}
+)
+
+# add sources to the library target
+target_sources(hello_static
+    PRIVATE
+        src/hello.cpp
+        src/internal.cpp
+)
+
+# define the C++ standard needed to compile this library and make it visible to dependers
+target_compile_features(hello_static PUBLIC cxx_std_17)
+
+# set the include directories
+target_include_directories(hello_static
+    PRIVATE src
+    PUBLIC include
+)
