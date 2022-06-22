@@ -4,8 +4,11 @@
 
 int main(int argc, const char *argv[])
 {
-    hello_header_only::print_hello("John Doe");
-    hello::Hello hello("Jane Doe");
+    hello_header_only::print_hello("eg");
+    hello::Hello hello("eg");
     hello.greet();
-    return 0;
+
+    const std::string obj_name {"eg"};
+    hello_object::HelloObject obj(obj_name);
+    obj.greet();
 }
